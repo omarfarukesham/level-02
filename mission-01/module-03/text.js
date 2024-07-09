@@ -1,6 +1,12 @@
-console.log('Initially ' + (window.navigator.onLine ? 'on' : 'off') + 'line');
+const axios = require('axios');
 
-window.addEventListener('online', () => console.log('Became online'));
-window.addEventListener('offline', () => console.log('Became offline'));
+async function checkInternet() {
+    try {
+        await axios.get('https://www.google.com');
+        console.log('You are online now');
+    } catch (error) {
+        console.log('You are not online');
+    }
+}
 
-document.getElementById('statusCheck').addEventListener('click', () => console.log('window.navigator.onLine is ' + window.navigator.onLine));
+checkInternet();
